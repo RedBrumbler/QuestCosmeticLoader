@@ -33,6 +33,8 @@ namespace CosmeticLoader
         this->assetTypeMap = assetTypeMap;
         
         std::function<void(AssetBundle*)> bundleCallback = std::bind(&CosmeticLoader<T>::OnBundleLoaded, this);
+        
+    	std::string fileName = TransformFilePath(manifest.get_filePath)
         AssetBundle::LoadFromFileAsync(manifest.get_filePath(), bundleCallback);
     }
 
@@ -47,6 +49,7 @@ namespace CosmeticLoader
     {
         // if nothing loaded, return nullptr
         if (assetMap.size() == 0) return nullptr;
+        
         // if name not given, return the first thing loaded
         if (name == "") return assetMap.begin()->second;
         
@@ -92,5 +95,12 @@ namespace CosmeticLoader
 
         // call user defined callback
         if (hasCallback) callback(asset, name);
+    }
+
+    std::string CosmeticLoader::TransformFilePath(std::string path, std::string newFileName)
+    {
+        path = path.substr(0, path.find_last_of('/'));
+        path += newFileName;
+        return path;
     }
 }

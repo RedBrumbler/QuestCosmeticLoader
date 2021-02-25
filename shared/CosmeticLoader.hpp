@@ -36,6 +36,8 @@ namespace CosmeticLoader
             virtual Il2CppObject* get_asset(std::string name = "");
 
         protected:
+            virtual static std::string TransformFilePath(std::string path, std::string newFileName);
+
             virtual void AddToMap(Il2CppObject* obj, std::string name);
             
             virtual void OnBundleLoaded(AssetBundle* bundle);

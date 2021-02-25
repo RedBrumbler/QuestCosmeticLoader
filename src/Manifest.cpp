@@ -10,7 +10,7 @@ namespace CosmeticLoader
         rapidjson::Document d;
         d.Parse(json.c_str());
 
-        fileName = d["fileName"].GetString();
+        fileName = d["androidFileName"].GetString();
         descriptor = T(d["descriptor"]);
         config = U(d["conifg"]);
     }
