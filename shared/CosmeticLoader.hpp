@@ -4,17 +4,18 @@
 #include <map>
 #include <functional>
 #include "../shared/Manifest.hpp"
+#include "../shared/AssetBundle.hpp"
 #include "beatsaber-hook/shared/utils/typedefs.h"
-
-typedef std::map<std::string, Il2CppObject*> AssetMap;
-typedef std::function<void(std::string, Il2CppObject*)> CosmeticCallback;
-typedef std::map<std::string, Il2CppReflectionType*> AssetTypeMap;
 
 namespace CosmeticLoader
 {
     template<class T = Manifest<Config, Descriptor>>
     class CosmeticLoader
     {
+        typedef std::map<std::string, Il2CppObject*> AssetMap;
+        typedef std::function<void(std::string, Il2CppObject*)> CosmeticCallback;
+        typedef std::map<std::string, Il2CppReflectionType*> AssetTypeMap;
+
         public:
             CosmeticLoader(std::string filePath, std::string assetName, Il2CppReflectionType* assetType);
             CosmeticLoader(T manifest, std::string assetName, Il2CppReflectionType* assetType);
@@ -35,26 +36,20 @@ namespace CosmeticLoader
             virtual Il2CppObject* get_asset(std::string name = "");
 
         protected:
-            virtual void AddToMap(Il2CppObject* obj, std::string name)
-            {
-                assetMap[name] = obj;
-            }
+            virtual void AddToMap(Il2CppObject* obj, std::string name);
             
-            virtual void OnBundleLoaded(Il2CppObject* bundle)
-            {
+            virtual void OnBundleLoaded(AssetBundle* bundle);
 
-            }
+            virtual void OnAssetLoaded(Asset* asset, std::string name);
+            
+            AssetBundle* bundle;
 
-            virtual void OnAssetLoaded(Il2CppObject* asset, std::string name)
-            {
-                AddToMap(asset, name);
-            }
-
+            AssetTypeMap assetTypeMap = {};
             AssetMap assetMap = {};
-            std::vector<std::string> assetNames = {};
-            
+
             bool hasCallback = false;
             CosmeticCallback callback;
+            
             T manifest;
     };
 }
