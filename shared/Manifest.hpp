@@ -1,7 +1,7 @@
 #pragma once
 #include "beatsaber-hook/shared/rapidjson/include/rapidjson/document.h"
-#include "Descriptor.hpp"
-#include "Config.hpp"
+#include "../shared/Descriptor.hpp"
+#include "../shared/Config.hpp"
 #include <string>
 
 namespace CosmeticLoader
@@ -10,16 +10,7 @@ namespace CosmeticLoader
     class Manifest
     {
         public:
-            Manifest(std::string filePath) : filePath(filePath)
-            {
-                std::string json = readfile(filePath);
-                rapidjson::Document d;
-                d.Parse(json.c_str());
-
-                fileName = d["fileName"].GetString();
-                descriptor = T(d["descriptor"]);
-                config = U(d["conifg"]);
-            }
+            Manifest(std::string filePath);
             
             /// @brief returrns a const reference to the filepath string
             virtual const std::string& get_filePath() const;
@@ -28,16 +19,10 @@ namespace CosmeticLoader
             virtual const std::string& get_fileName() const;
             
             /// @brief returns a const reference to the descriptor
-            virtual const T& get_descriptor() const
-            {
-                return descriptor;
-            }
+            virtual const T& get_descriptor() const;
 
             /// @brief returns a const reference to the config
-            virtual const U& get_config() const
-            {
-                return config;
-            }
+            virtual const U& get_config() const;
 
         protected:
 

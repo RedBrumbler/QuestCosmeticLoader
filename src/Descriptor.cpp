@@ -2,10 +2,7 @@
 
 namespace CosmeticLoader
 {
-    Descriptor::Descriptor(std::string name, std::string author, std::string description) : name(name), author(author), description(description)
-    {
-        
-    }
+    Descriptor::Descriptor(std::string name, std::string author, std::string description) : name(name), author(author), description(description) {}
 
     Descriptor::Descriptor(rapidjson::Value& val)
     {

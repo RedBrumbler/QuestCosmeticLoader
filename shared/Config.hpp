@@ -6,6 +6,6 @@ namespace CosmeticLoader
     class Config
     {
         public:
-            Config(rapidjson::Value& val);
-    }
+            Config(rapidjson::Value& val) {};
+    };
 }
