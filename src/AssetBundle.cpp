@@ -3,7 +3,7 @@
 #include "beatsaber-hook/shared/utils/utils.h"
 #include "beatsaber-hook/shared/utils/il2cpp-functions.hpp"
 
-ModInfo info = {ID, VERSION};
+ModInfo info = {"CosmeticLoader", "0.1.0"};
 
 Logger& getLogger()
 {
