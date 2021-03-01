@@ -90,10 +90,10 @@ namespace CosmeticsLoader {
 
             getBundleLogger().info("Loading asset '%s' synchronously.", assetName.data());
             
-            std::vector<Il2CppClass*> gen = std::vector<Il2CppClass*>{};
+            //std::vector<Il2CppClass*> gen = std::vector<Il2CppClass*>{};
 
-            auto* ___internal__method = ::il2cpp_utils::FindMethod(this, "LoadAsset", gen, ::il2cpp_utils::ExtractTypes(nameStr, assetType));            
-            return RET_0_UNLESS(getBundleLogger(), il2cpp_utils::RunMethod<Il2CppObject*, false>(this, ___internal__method, nameStr, assetType));
+            //auto* ___internal__method = ::il2cpp_utils::FindMethod(this, "LoadAsset", gen, ::il2cpp_utils::ExtractTypes(nameStr, assetType));            
+            return RET_0_UNLESS(getBundleLogger(), il2cpp_utils::RunMethod(this, "LoadAsset", nameStr, assetType));
         }
 
 

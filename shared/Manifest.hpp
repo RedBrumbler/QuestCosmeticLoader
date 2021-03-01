@@ -18,7 +18,7 @@ namespace CosmeticsLoader
 
                 fileName = d["androidFileName"].GetString();
                 descriptor = T(d["descriptor"]);
-                config = U(d["conifg"]);
+                config = U(d["config"]);
             }
 
             /// @brief returrns a const reference to the filepath string
