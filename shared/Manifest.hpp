@@ -3,6 +3,7 @@
 #include "../shared/Descriptor.hpp"
 #include "../shared/Config.hpp"
 #include <string>
+#include "ZipUtils.hpp"
 
 namespace CosmeticsLoader
 {
@@ -12,9 +13,10 @@ namespace CosmeticsLoader
         public:
             Manifest(std::string filePath) : filePath(filePath)
             {
-                std::string json = readfile(filePath);
+                std::vector<uint8_t> data = {};
+                if (!ZipUtils::GetBytesFromZipFile(filePath, "package.json", data)) return;
                 rapidjson::Document d;
-                d.Parse(json.c_str());
+                d.Parse((char*)data.data(), data.size());
 
                 fileName = d["androidFileName"].GetString();
                 descriptor = T(d["descriptor"]);

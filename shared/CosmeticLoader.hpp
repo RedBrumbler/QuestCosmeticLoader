@@ -11,7 +11,7 @@
 
 static Logger& getLoaderLogger()
 {
-    static Logger* logger = new Logger({"CosmeticLoader", "0.1.0"}, LoggerOptions(false, true));
+    static Logger* logger = new Logger({"Cosmetics Loader", "0.1.0"}, LoggerOptions(false, true));
     return *logger;
 }
 
@@ -37,9 +37,7 @@ namespace CosmeticsLoader
                 this->assetTypeMap = assetTypeMap;
                 this->callback = callback;
                 this->hasCallback = true;
-
-                std::string bundlePath = TransformFilePath(manifest.get_filePath(), manifest.get_fileName());
-                this->bundle = AssetBundle::LoadFromFile(bundlePath);
+                LoadBundle();
                 OnBundleLoaded(this->bundle);
             }
 
@@ -47,9 +45,8 @@ namespace CosmeticsLoader
             CosmeticLoader(T manifest, AssetTypeMap assetTypeMap) : manifest(manifest)
             {
                 this->assetTypeMap = assetTypeMap;
-                                
-            	std::string bundlePath = TransformFilePath(manifest.get_filePath(), manifest.get_fileName());
-                this->bundle = AssetBundle::LoadFromFile(bundlePath);
+
+                LoadBundle();
                 OnBundleLoaded(this->bundle);
             }
 
@@ -135,6 +132,18 @@ namespace CosmeticsLoader
             
             T manifest;
         private:
+            static AssetBundle* LoadBundle()
+            {
+                std::vector<uint8_t> data = {};
+                
+                if (!ZipUtils::GetBytesFromZipFile(manifest.filePath, manifest.androidFileName, data))
+                {
+                    getLoaderLogger().error("Error loading bundle '%s' from path '%s'", manifest.androidFileName.c_str(), manifest.filePath.c_str());
+                    return;
+                }
+                this->bundle = AssetBundle::LoadFromMemory(data);
+            } 
+
             static AssetTypeMap MakeMap(std::string name, Il2CppReflectionType* type)
             {
                 CosmeticsLoader::AssetTypeMap newMap = {};

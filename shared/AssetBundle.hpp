@@ -58,6 +58,14 @@ namespace CosmeticsLoader {
             return RET_0_UNLESS(getBundleLogger(), il2cpp_utils::RunMethod<AssetBundle*>("UnityEngine", "AssetBundle", "LoadFromFile", assetFilePath));
         }
 
+        static AssetBundle* LoadFromMemory(std::vector<uint8_t>& data)
+        {
+            using LoadFromMemory = function_ptr_t<Il2CppObject*, Array<uint8_t>*, unsigned int>;
+            static LoadFromMemory loadFromMemory = reinterpret_cast<LoadFromMemory>(il2cpp_functions::resolve_icall("UnityEngine.AssetBundle::LoadFromMemory_Internal"));
+            Array<uint8_t>* dataArray = il2cpp_utils::vectorToArray(data);
+            return (AssetBundle*)loadFromMemory(dataArray, 0);
+        }
+
         /// @brief Loads the asset with the given name and type from this bundle, then calls the given callback.
         /// @param assetName The name of the asset to load.
         /// @param callback The callback to perform after the asset has been loaded.
@@ -95,6 +103,7 @@ namespace CosmeticsLoader {
             //auto* ___internal__method = ::il2cpp_utils::FindMethod(this, "LoadAsset", gen, ::il2cpp_utils::ExtractTypes(nameStr, assetType));            
             return RET_0_UNLESS(getBundleLogger(), il2cpp_utils::RunMethod(this, "LoadAsset", nameStr, assetType));
         }
+
 
 
       private:
