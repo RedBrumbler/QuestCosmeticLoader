@@ -5,13 +5,16 @@
     "name": "QuestCosmeticLoader",
     "id": "QuestCosmeticLoader",
     "version": "0.1.0",
-    "url": null,
-    "additionalData": {}
+    "url": "https://github.com/RedBrumbler/QuestCosmeticLoader",
+    "additionalData": {
+        "branchName": "version-v0.1.0",
+        "soLink": "https://github.com/RedBrumbler/QuestCosmeticLoader/releases/download/0.1.0/libquestcosmeticloader.so"
+    }
   },
   "dependencies": [
     {
       "id": "beatsaber-hook",
-      "versionRange": "=1.1.2",
+      "versionRange": "^1.2.4",
       "additionalData": {
         "extraFiles": [
           "src/inline-hook"
