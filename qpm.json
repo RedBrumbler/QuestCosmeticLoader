@@ -3,7 +3,7 @@
   "dependenciesDir": "extern",
   "info": {
     "name": "QuestCosmeticLoader",
-    "id": "QuestCosmeticLoader",
+    "id": "quest-cosmetic-loader",
     "version": "0.1.0",
     "url": "https://github.com/RedBrumbler/QuestCosmeticLoader",
     "additionalData": {
