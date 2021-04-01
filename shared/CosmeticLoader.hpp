@@ -11,7 +11,7 @@
 
 static Logger& getLoaderLogger()
 {
-    static Logger* logger = new Logger({"Cosmetics Loader", "0.1.1"}, LoggerOptions(false, true));
+    static Logger* logger = new Logger({"QuestCosmeticLoader", "0.1.1"}, LoggerOptions(false, true));
     return *logger;
 }
 
