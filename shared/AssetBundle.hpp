@@ -60,10 +60,11 @@ namespace CosmeticsLoader {
 
         static AssetBundle* LoadFromMemory(std::vector<uint8_t>& data)
         {
-            using LoadFromMemory = function_ptr_t<Il2CppObject*, Array<uint8_t>*, unsigned int>;
+            getBundleLogger().info("loading bundle from %d bytes in memory", data.size());
+            using LoadFromMemory = function_ptr_t<AssetBundle*, Array<uint8_t>*, unsigned int>;
             static LoadFromMemory loadFromMemory = reinterpret_cast<LoadFromMemory>(il2cpp_functions::resolve_icall("UnityEngine.AssetBundle::LoadFromMemory_Internal"));
             Array<uint8_t>* dataArray = il2cpp_utils::vectorToArray(data);
-            return (AssetBundle*)loadFromMemory(dataArray, 0);
+            return loadFromMemory(dataArray, 0);
         }
 
         /// @brief Loads the asset with the given name and type from this bundle, then calls the given callback.

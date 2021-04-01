@@ -11,7 +11,7 @@
 
 static Logger& getLoaderLogger()
 {
-    static Logger* logger = new Logger({"Cosmetics Loader", "0.1.0"}, LoggerOptions(false, true));
+    static Logger* logger = new Logger({"Cosmetics Loader", "0.1.1"}, LoggerOptions(false, true));
     return *logger;
 }
 
@@ -37,8 +37,8 @@ namespace CosmeticsLoader
                 this->assetTypeMap = assetTypeMap;
                 this->callback = callback;
                 this->hasCallback = true;
-                LoadBundle();
-                OnBundleLoaded(this->bundle);
+                bundle = LoadBundle();
+                OnBundleLoaded(bundle);
             }
 
             CosmeticLoader(std::string filePath, AssetTypeMap assetTypeMap) : CosmeticLoader<T>(T(filePath), assetTypeMap) {};
@@ -46,8 +46,8 @@ namespace CosmeticsLoader
             {
                 this->assetTypeMap = assetTypeMap;
 
-                LoadBundle();
-                OnBundleLoaded(this->bundle);
+                bundle = LoadBundle();
+                OnBundleLoaded(bundle);
             }
 
             /// @brief returns a const reference to the manifest for this loader
@@ -92,6 +92,7 @@ namespace CosmeticsLoader
             virtual void OnBundleLoaded(AssetBundle* bundle)
             {
                 this->bundle = bundle;
+                if (!bundle) return;
                 for (auto p : assetTypeMap)
                 {
                     using namespace std::placeholders;
@@ -122,7 +123,7 @@ namespace CosmeticsLoader
                 else getLoaderLogger().info("There was no callback to call for asset %s", name.c_str());
             }
             
-            AssetBundle* bundle;
+            AssetBundle* bundle = nullptr;
 
             AssetTypeMap assetTypeMap = {};
             AssetMap assetMap = {};
@@ -132,16 +133,18 @@ namespace CosmeticsLoader
             
             T manifest;
         private:
-            static AssetBundle* LoadBundle()
+            AssetBundle* LoadBundle()
             {
                 std::vector<uint8_t> data = {};
                 
-                if (!ZipUtils::GetBytesFromZipFile(manifest.filePath, manifest.androidFileName, data))
+                if (!ZipUtils::GetBytesFromZipFile(manifest.get_filePath(), manifest.get_fileName(), data))
                 {
-                    getLoaderLogger().error("Error loading bundle '%s' from path '%s'", manifest.androidFileName.c_str(), manifest.filePath.c_str());
-                    return;
+                    getLoaderLogger().info("Error loading bundle '%s' from path '%s'", manifest.get_fileName().c_str(), manifest.get_filePath().c_str());
+                    return nullptr;
                 }
-                this->bundle = AssetBundle::LoadFromMemory(data);
+                
+                AssetBundle* bundle = AssetBundle::LoadFromMemory(data);
+                return bundle;
             } 
 
             static AssetTypeMap MakeMap(std::string name, Il2CppReflectionType* type)
