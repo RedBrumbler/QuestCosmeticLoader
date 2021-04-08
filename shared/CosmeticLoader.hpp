@@ -8,6 +8,10 @@
 #include "../shared/AssetLoader.hpp"
 #include "beatsaber-hook/shared/utils/typedefs.h"
 
+#ifdef HAS_CODEGEN
+#include "UnityEngine/GameObject.hpp"
+#include "UnityEngine/Object.hpp"
+#endif
 
 static Logger& getLoaderLogger()
 {
@@ -112,8 +116,14 @@ namespace CosmeticsLoader
                     return;
                 }
                 else getLoaderLogger().info("Asset %s loaded succesfully", name.c_str());
-                asset = CRASH_UNLESS(il2cpp_utils::RunMethod("UnityEngine", "Object", "Instantiate", asset));
-                CRASH_UNLESS(il2cpp_utils::RunMethod("UnityEngine", "Object", "DontDestroyOnLoad", asset));
+
+                #ifdef HAS_CODEGEN
+                UnityEngine::GameObject* newAsset = UnityEngine::Object::Instantiate((UnityEngine::GameObject*)asset);
+                UnityEngine::Object::DontDestroyOnLoad(newAsset);
+                #else
+                Il2CppObject* newAsset = CRASH_UNLESS(il2cpp_utils::RunMethod("UnityEngine", "Object", "Instantiate", asset));
+                CRASH_UNLESS(il2cpp_utils::RunMethod("UnityEngine", "Object", "DontDestroyOnLoad", newAsset));
+                #endif
 
                 // add to our map
                 AddToMap(asset, name);
