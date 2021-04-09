@@ -126,10 +126,10 @@ namespace CosmeticsLoader
                 #endif
 
                 // add to our map
-                AddToMap(asset, name);
+                AddToMap(newAsset, name);
 
                 // call user defined callback
-                if (hasCallback) callback(name, asset);
+                if (hasCallback) callback(name, newAsset);
                 else getLoaderLogger().info("There was no callback to call for asset %s", name.c_str());
             }
             
