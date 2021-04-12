@@ -4,11 +4,11 @@
   "info": {
     "name": "QuestCosmeticLoader",
     "id": "quest-cosmetic-loader",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "url": "https://github.com/RedBrumbler/QuestCosmeticLoader",
     "additionalData": {
-      "branchName": "version-v0.1.2",
-      "soLink": "https://github.com/RedBrumbler/QuestCosmeticLoader/releases/download/0.1.2/libquestcosmeticloader.so"
+      "branchName": "version-v0.1.3",
+      "soLink": "https://github.com/RedBrumbler/QuestCosmeticLoader/releases/download/0.1.3/libquestcosmeticloader.so"
     }
   },
   "dependencies": [
