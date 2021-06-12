@@ -9,7 +9,7 @@
 #include "beatsaber-hook/shared/utils/utils.h"
 #include "beatsaber-hook/shared/utils/il2cpp-utils-methods.hpp"
 
-static ModInfo info = {"QuestCosmeticLoader", "0.1.3"};
+static ModInfo info = {"QuestCosmeticLoader", "0.1.4"};
 
 static Logger& getBundleLogger()
 {
