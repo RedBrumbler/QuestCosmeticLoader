@@ -4,7 +4,7 @@ name: NDK build
 # set env variables
 env:
     ndkname: android-ndk-r22
-    module_id: questcosmeticloader
+    module_id: quest-cosmetic-loader
 
 # run this workflow when
 on:
