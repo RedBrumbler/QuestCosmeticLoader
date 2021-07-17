@@ -60,7 +60,7 @@ namespace ZipUtils
             char* file = new char[st.size];
 
             zip_fread(f, file, st.size);
-            getLogger().info("Found %d bytes", st.size);
+            getLogger().info("Found %d bytes", (int)st.size);
             zip_fclose(f);
 
             for (int i = 0; i < st.size; i++)
