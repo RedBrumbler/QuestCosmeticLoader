@@ -45,7 +45,7 @@ include $(PREBUILT_SHARED_LIBRARY)
 # In addition, ensure that you add them to the shared library build below.
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := questcosmeticloader
+LOCAL_MODULE := quest-cosmetic-loader_0_2_0
 LOCAL_SRC_FILES += $(call rwildcard,src/**,*.cpp)
 LOCAL_SRC_FILES += $(call rwildcard,extern/beatsaber-hook/src/inline-hook,*.cpp)
 LOCAL_SRC_FILES += $(call rwildcard,extern/beatsaber-hook/src/inline-hook,*.c)
@@ -53,6 +53,6 @@ LOCAL_SHARED_LIBRARIES += modloader
 LOCAL_SHARED_LIBRARIES += beatsaber-hook_2_0_3
 LOCAL_SHARED_LIBRARIES += zip
 LOCAL_LDLIBS += -llog
-LOCAL_CFLAGS += -I'extern/libil2cpp/il2cpp/libil2cpp' -isystem 'extern' -I'extern/codegen/include' -DID='"QuestCosmeticLoader"' -DVERSION='"0.1.4"' -I'./extern' -Wno-inaccessible-base
+LOCAL_CFLAGS += -I'extern/libil2cpp/il2cpp/libil2cpp' -isystem 'extern' -I'extern/codegen/include' -DID='"QuestCosmeticLoader"' -DVERSION='"0.2.0"' -I'./extern' -Wno-inaccessible-base
 LOCAL_C_INCLUDES += ./include ./src ./shared
 include $(BUILD_SHARED_LIBRARY)
