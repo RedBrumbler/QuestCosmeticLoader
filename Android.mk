@@ -53,6 +53,6 @@ LOCAL_SHARED_LIBRARIES += modloader
 LOCAL_SHARED_LIBRARIES += beatsaber-hook_2_2_5
 LOCAL_SHARED_LIBRARIES += zip
 LOCAL_LDLIBS += -llog
-LOCAL_CFLAGS += -I'extern/libil2cpp/il2cpp/libil2cpp' -isystem 'extern' -I'extern/codegen/include' -DID='"QuestCosmeticLoader"' -DVERSION='"0.1.5"' -I'./extern' -Wno-inaccessible-base
-LOCAL_C_INCLUDES += ./include ./src ./shared
+LOCAL_CFLAGS += -DID='"QuestCosmeticLoader"' -DVERSION='"0.1.5"'  -Wno-inaccessible-base
+LOCAL_C_INCLUDES += ./include ./src ./shared ./extern/libil2cpp/il2cpp/libil2cpp ./extern/codegen/include ./extern
 include $(BUILD_SHARED_LIBRARY)
