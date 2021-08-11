@@ -9,7 +9,7 @@
 #include "beatsaber-hook/shared/utils/utils.h"
 #include "beatsaber-hook/shared/utils/il2cpp-utils-methods.hpp"
 
-static ModInfo info = {"QuestCosmeticLoader", "0.1.4"};
+static ModInfo info = {"QuestCosmeticLoader", "0.1.5"};
 
 static Logger& getBundleLogger()
 {
@@ -36,7 +36,7 @@ namespace CosmeticsLoader {
         /// @return True if successful, false otherwise.
         static bool LoadFromFileAsync(std::string_view filePath, AssetBundleCallback callback) 
         {
-            getBundleLogger().info("Loading bundle @ %s", filePath);
+            getBundleLogger().info("Loading bundle @ %s", filePath.data());
             auto* assetFilePath = RET_0_UNLESS(getBundleLogger(), CreateIl2CppStringPathAndEnsureExists(filePath));
 
             auto* bundleAsync = RET_0_UNLESS(getBundleLogger(), il2cpp_utils::RunMethod("UnityEngine", "AssetBundle", "LoadFromFileAsync", assetFilePath));
