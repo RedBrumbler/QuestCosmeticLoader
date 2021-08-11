@@ -7,8 +7,9 @@
     "version": "0.2.2",
     "url": "https://github.com/RedBrumbler/QuestCosmeticLoader",
     "additionalData": {
-      "branchName": "version-v0.1.4",
-      "soLink": "https://github.com/RedBrumbler/QuestCosmeticLoader/releases/download/0.1.4/libquestcosmeticloader.so"
+      "branchName": "version-v0.2.2",
+      "soLink": "https://github.com/RedBrumbler/QuestCosmeticLoader/releases/download/v0.2.2/libquest-cosmetic-loader_0_2_2.so",
+      "debugSoLink": "https://github.com/RedBrumbler/QuestCosmeticLoader/releases/download/v0.2.2/debug_libquest-cosmetic-loader_0_2_2.so"
     }
   },
   "dependencies": [
