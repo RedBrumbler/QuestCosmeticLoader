@@ -27,11 +27,11 @@ LOCAL_MODULE := zip
 LOCAL_EXPORT_C_INCLUDES := extern/zip
 LOCAL_SRC_FILES := extern/libzip.so
 include $(PREBUILT_SHARED_LIBRARY)
-# Creating prebuilt for dependency: beatsaber-hook - version: 2.2.5
+# Creating prebuilt for dependency: beatsaber-hook - version: 2.3.2
 include $(CLEAR_VARS)
-LOCAL_MODULE := beatsaber-hook_2_2_5
+LOCAL_MODULE := beatsaber-hook_2_3_2
 LOCAL_EXPORT_C_INCLUDES := extern/beatsaber-hook
-LOCAL_SRC_FILES := extern/libbeatsaber-hook_2_2_5.so
+LOCAL_SRC_FILES := extern/libbeatsaber-hook_2_3_2.so
 LOCAL_CPP_FEATURES += rtti exceptions
 include $(PREBUILT_SHARED_LIBRARY)
 # Creating prebuilt for dependency: modloader - version: 1.2.3
@@ -45,14 +45,14 @@ include $(PREBUILT_SHARED_LIBRARY)
 # In addition, ensure that you add them to the shared library build below.
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := quest-cosmetic-loader
+LOCAL_MODULE := quest-cosmetic-loader_0_2_3
 LOCAL_SRC_FILES += $(call rwildcard,src/**,*.cpp)
 LOCAL_SRC_FILES += $(call rwildcard,extern/beatsaber-hook/src/inline-hook,*.cpp)
 LOCAL_SRC_FILES += $(call rwildcard,extern/beatsaber-hook/src/inline-hook,*.c)
 LOCAL_SHARED_LIBRARIES += modloader
-LOCAL_SHARED_LIBRARIES += beatsaber-hook_2_2_5
+LOCAL_SHARED_LIBRARIES += beatsaber-hook_2_3_2
 LOCAL_SHARED_LIBRARIES += zip
 LOCAL_LDLIBS += -llog
-LOCAL_CFLAGS += -DID='"QuestCosmeticLoader"' -DVERSION='"0.2.2"'  -Wno-inaccessible-base
+LOCAL_CFLAGS += -DID='"QuestCosmeticLoader"' -DVERSION='"0.2.3"'  -Wno-inaccessible-base
 LOCAL_C_INCLUDES += ./include ./src ./shared ./extern/libil2cpp/il2cpp/libil2cpp ./extern/codegen/include ./extern
 include $(BUILD_SHARED_LIBRARY)
